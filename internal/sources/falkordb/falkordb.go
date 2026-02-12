@@ -153,12 +153,26 @@ func convertValue(value any) any {
 			"labels":     v.Labels,
 			"properties": convertValue(v.Properties),
 		}
+	case falkordb.Node:
+		return map[string]any{
+			"id":         v.ID,
+			"labels":     v.Labels,
+			"properties": convertValue(v.Properties),
+		}
 	case *falkordb.Edge:
 		return map[string]any{
 			"id":         v.ID,
 			"type":       v.Relation,
 			"srcNode":    v.SourceNodeID(),
 			"destNode":   v.DestNodeID(),
+			"properties": convertValue(v.Properties),
+		}
+	case falkordb.Edge:
+		return map[string]any{
+			"id":         v.ID,
+			"type":       v.Relation,
+			"srcNode":    v.Source.ID,
+			"destNode":   v.Destination.ID,
 			"properties": convertValue(v.Properties),
 		}
 	case falkordb.Path:
