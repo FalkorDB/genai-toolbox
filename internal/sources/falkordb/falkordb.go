@@ -225,6 +225,8 @@ func initFalkorDBConnection(ctx context.Context, tracer trace.Tracer, addr, user
 	// Verify connectivity by running a simple query
 	_, err = graph.ROQuery("RETURN 1", nil, nil)
 	if err != nil {
+		// Close the underlying Redis connection if connectivity verification fails.
+		db.Conn.Close()
 		return nil, nil, fmt.Errorf("unable to verify connectivity: %w", err)
 	}
 
