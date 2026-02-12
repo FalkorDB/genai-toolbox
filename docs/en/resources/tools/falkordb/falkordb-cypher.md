@@ -19,7 +19,7 @@ database. It's compatible with any of the following sources:
 The specified Cypher statement is executed as a parameterized statement, and
 specified parameters will be used according to their name: e.g. `$name`.
 
-> **Note:** This tool uses parameterized queries to prevent SQL injections.
+> **Note:** This tool uses parameterized queries to prevent Cypher injection attacks.
 > Query parameters can be used as substitutes for arbitrary expressions.
 > Parameters cannot be used as substitutes for identifiers, column names, table
 > names, or other parts of the query.
