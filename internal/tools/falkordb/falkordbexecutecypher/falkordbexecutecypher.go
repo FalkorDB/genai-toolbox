@@ -105,7 +105,7 @@ func (t Tool) Invoke(ctx context.Context, resourceMgr tools.SourceProvider, para
 	paramsMap := params.AsMap()
 	cypherStr, ok := paramsMap["cypher"].(string)
 	if !ok {
-		return nil, util.NewAgentError(fmt.Sprintf("unable to cast cypher parameter %s", paramsMap["cypher"]), nil)
+		return nil, util.NewAgentError(fmt.Sprintf("unable to cast cypher parameter %v", paramsMap["cypher"]), nil)
 	}
 
 	if cypherStr == "" {
@@ -114,7 +114,7 @@ func (t Tool) Invoke(ctx context.Context, resourceMgr tools.SourceProvider, para
 
 	dryRun, ok := paramsMap["dry_run"].(bool)
 	if !ok {
-		return nil, util.NewAgentError(fmt.Sprintf("unable to cast dry_run parameter %s", paramsMap["dry_run"]), nil)
+		return nil, util.NewAgentError(fmt.Sprintf("unable to cast dry_run parameter %v", paramsMap["dry_run"]), nil)
 	}
 
 	resp, err := source.RunQuery(ctx, cypherStr, nil, t.ReadOnly, dryRun)
